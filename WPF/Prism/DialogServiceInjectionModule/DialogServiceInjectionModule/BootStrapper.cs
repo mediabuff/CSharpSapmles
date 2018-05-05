@@ -3,12 +3,12 @@ using Prism.Mvvm;
 using Prism.Unity;
 using System.Windows;
 
-namespace DialogServiceInjection
+namespace DialogServiceInjectionModule
 {
     public class Bootstrapper : UnityBootstrapper
     {
         // メモ
-        // ConfigureContainer→ConfigureViewModelLocator→CreateShell→InitializeShellの順番で呼び出し
+        // ConfigureContainer→ConfigureViewModelLocator→CreateShell→CreateShellの順番で呼び出し
 
         /// <summary>
         /// shellの生成
