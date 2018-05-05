@@ -41,7 +41,7 @@ namespace DialogServiceInjection
             // 今回はどちらでも良いのでシングルトンにしてあります.
             Container.RegisterType<IDialogService, DialogService>(new ContainerControlledLifetimeManager());
             // 同じインターフェースで別実装を使う場合は名前付きを使用する.
-            Container.RegisterType<IDialogService, ConfirmDialogService>("ConfirmDialog", new ContainerControlledLifetimeManager());
+            Container.RegisterType<IDialogService, ConfirmDialogService>(nameof(ConfirmDialogService), new ContainerControlledLifetimeManager());
 
             // UserControl1ViewModelの生成.
             // デフォルトのDialogServiceが使われるため定義しなくてもよい.
@@ -50,7 +50,7 @@ namespace DialogServiceInjection
 #endif
             // UserControl2ViewModelの生成.
             // こちらはConfirmDialogを使いたいのでそちらをResolveするようにする.
-            Container.RegisterType<UserControl2ViewModel>(new InjectionFactory(c => new UserControl2ViewModel(c.Resolve<IDialogService>("ConfirmDialog"))));
+            Container.RegisterType<UserControl2ViewModel>(new InjectionFactory(c => new UserControl2ViewModel(c.Resolve<IDialogService>(nameof(ConfirmDialogService)))));
         }
 
         /// <summary>
