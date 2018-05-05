@@ -50,7 +50,7 @@ namespace DialogServiceInjection
 #endif
             // UserControl2ViewModelの生成.
             // こちらはConfirmDialogを使いたいのでそちらをResolveするようにする.
-            Container.RegisterType<UserControl2ViewModel>(new InjectionFactory(c => new UserControl1ViewModel(c.Resolve<IDialogService>("ConfirmDialog"))));
+            Container.RegisterType<UserControl2ViewModel>(new InjectionFactory(c => new UserControl2ViewModel(c.Resolve<IDialogService>("ConfirmDialog"))));
         }
 
         /// <summary>
