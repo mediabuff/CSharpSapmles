@@ -26,7 +26,7 @@ windows10
 ModuleCatalog.AddModuleのモジュール名が被ると後勝ち  
 ⇒被らないようにType.FullNameを使うのが良いかも  
 
-ModuleでPrism.Coreのバージョンが違うとうまく動かないので注意が必要  
+ModuleでPrism.Coreのバージョンが違うとうまく動かないので注意が必要  
 ⇒ログに例外が出ているのでそれを見つけるか、例外設定を良い感じにしていないと見つけにくい  
 
 ViewModelにModuleViews(object[])を持つのはどうなのか？  
