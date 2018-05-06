@@ -34,7 +34,7 @@ ViewModelにModuleViews(object[])を持つのはどうなのか？(MVVM的に)
 ⇒Object2UIElementConverterにて表示データへ変換している  
 
 ## 参考
-今回は「03.Module」を参考  
+今回は「03.Module」を参考  
 https://github.com/runceel/PrismEdu  
 ConverterにQuickConverterを使おうかと思ったけどエラーで断念  
 http://blog.danskingdom.com/dont-write-wpf-converters-write-c-inline-in-your-xaml-instead-using-quickconverter/  
