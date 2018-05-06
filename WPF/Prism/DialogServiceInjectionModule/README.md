@@ -6,12 +6,12 @@ DialogServiceInjectionをモージュール化したサンプルです
 を実装  
 
 Moduleの自前登録はBootstrapperのConfigureModuleCatalog関数で行う  
-```cs
+```cs:Bootstrapper.cs
 catalog.AddModule(typeof(Module1.Module).FullName, typeof(Module1.Module).AssemblyQualifiedName, InitializationMode.OnDemand);
 ```
 
 Moduleの読み込みはIModuleManager::LoadModuleで行う
-```cs
+```cs:MainWindowViewModel.cs
 moduleManager?.LoadModule(typeof(Module1.Module).FullName);
 ```
 
