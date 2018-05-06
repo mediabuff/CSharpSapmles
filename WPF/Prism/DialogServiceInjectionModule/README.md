@@ -6,11 +6,12 @@ DialogServiceInjectionをモージュール化したサンプルです
 を実装  
 
 Moduleの自前登録はBootstrapperのConfigureModuleCatalog関数で行う  
+ModuleCAtalog::AddModule関数を使う  
 ```cs:Bootstrapper.cs
 catalog.AddModule(typeof(Module1.Module).FullName, typeof(Module1.Module).AssemblyQualifiedName, InitializationMode.OnDemand);
 ```
 
-Moduleの読み込みはIModuleManager::LoadModuleで行う
+Moduleの読み込みはIModuleManager::LoadModuleを使って行う  
 ```cs:MainWindowViewModel.cs
 moduleManager?.LoadModule(typeof(Module1.Module).FullName);
 ```
@@ -22,8 +23,11 @@ VisualStudio2017 15.6.7
 windows10  
 
 ## メモ
-ModuleでPrism.Coreのバージョンが違うとうまく動かないので注意が必要  
-⇒ログに例外が出ているのでそれを見つけるか、例外設定を良い感じにしていないと見つけにくい  
+ModuleCatalog.AddModuleのモジュール名が被ると後勝ち  
+⇒被らないようにType.FullNameを使うのが良いかも  
+
+ModuleでPrism.Coreのバージョンが違うとうまく動かないので注意が必要  
+⇒ログに例外が出ているのでそれを見つけるか、例外設定を良い感じにしていないと見つけにくい  
 
 ViewModelにModuleViews(object[])を持つのはどうなのか？  
 ⇒Object2UIElementConverterにて表示データへ変換している  
