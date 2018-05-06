@@ -1,5 +1,5 @@
 ﻿# DialogServiceInjectionModuleサンプル
-DialogServiceInjectionをモジュール化したサンプルです  
+前回のDialogServiceInjectionをモジュール化したサンプルです  
 
 - Moduleの使い方(コードで登録＋ロードを行う)
 
@@ -7,7 +7,7 @@ DialogServiceInjectionをモジュール化したサンプルです
 
 
 Moduleの自前登録はBootstrapperのConfigureModuleCatalog関数で行う  
-ModuleCAtalog::AddModule関数を使う  
+ModuleCatalog::AddModule関数を使う  
 ```cs:Bootstrapper.cs
 catalog.AddModule(typeof(Module1.Module).FullName, typeof(Module1.Module).AssemblyQualifiedName, InitializationMode.OnDemand);
 ```
@@ -33,8 +33,9 @@ ModuleでPrism.Coreのバージョンが違うとうまく動かないので注�
 ViewModelにModuleViews(object[])を持つのはどうなのか？(MVVM的に)  
 ⇒Object2UIElementConverterにて表示データへ変換している  
 
+ConverterにQuickConverterを使おうかと思ったけどエラーで断念  
+http://blog.danskingdom.com/dont-write-wpf-converters-write-c-inline-in-your-xaml-instead-using-quickconverter/  
+
 ## 参考
 今回は「03.Module」を参考  
 https://github.com/runceel/PrismEdu  
-ConverterにQuickConverterを使おうかと思ったけどエラーで断念  
-http://blog.danskingdom.com/dont-write-wpf-converters-write-c-inline-in-your-xaml-instead-using-quickconverter/  
