@@ -30,7 +30,7 @@ ModuleCatalog.AddModuleのモジュール名が被ると後勝ち
 ModuleでPrism.Coreのバージョンが違うとうまく動かないので注意が必要  
 ⇒ログに例外が出ているのでそれを見つけるか、例外設定を良い感じにしていないと見つけにくい  
 
-ViewModelにModuleViews(object[])を持つのはどうなのか？(MVVM的に)  
+ViewModelにModuleViews(object[])を持つのはどうなのか？(MVVM的に)  
 ⇒Object2UIElementConverterにて表示データへ変換している  
 
 ## 参考
