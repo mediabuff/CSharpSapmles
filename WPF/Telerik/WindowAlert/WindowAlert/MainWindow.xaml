@@ -1,0 +1,23 @@
+﻿<Window x:Class="WindowAlert.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WindowAlert"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+        <ComboBox Text="Alert Position" SelectedIndex="5" SelectionChanged="ComboBox_SelectionChanged" Margin="5">
+            <ComboBoxItem>TopLeft</ComboBoxItem>
+            <ComboBoxItem>TopCenter</ComboBoxItem>
+            <ComboBoxItem>TopRight</ComboBoxItem>
+            <ComboBoxItem>BottomLeft</ComboBoxItem>
+            <ComboBoxItem>BottomCenter</ComboBoxItem>
+            <ComboBoxItem>BottomRight</ComboBoxItem>
+        </ComboBox>
+        <Button Content="Alert1" Click="Button_Click" Margin="5"/>
+        <Button Content="Alert2" Click="Button_Click_1" Margin="5"/>
+        <Button Content="Alert3" Click="Button_Click_2" Margin="5"/>
+        <Button Content="Alert4" Click="Button_Click_3" Margin="5"/>
+    </StackPanel>
+</Window>
