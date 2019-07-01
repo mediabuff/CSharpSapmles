@@ -14,6 +14,7 @@ manager = new RadWindowAlertManager(this, AlertScreenPosition.TopLeft);
 manager.ShowAlert("messages...");
 ```
 ||||
+|---|---|---|
 |![](https://github.com/nosimo/CSharpSapmles/blob/image/images/window_alert_bottom_right1.png)|![](https://github.com/nosimo/CSharpSapmles/blob/image/images/window_alert_bottom_right3.png)|![](https://github.com/nosimo/CSharpSapmles/blob/image/images/window_alert_top_left3.png)|
 
 ## 参考
