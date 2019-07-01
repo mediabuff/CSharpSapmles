@@ -10,7 +10,7 @@ RadDesktopAlertManagerをWindow向けに拡張したRadWindowAlertManagerサン�
 ```cs
 using Telerik.Windows.Controls;
 
-manager = new RadWindowAlertManager(this, AlertScreenPosition.TopLeft);
+manager = new RadWindowAlertManager(ownerWindow, AlertScreenPosition.TopLeft);
 manager.ShowAlert("messages...");
 ```
 |BottomRight Alert|BottomRight Alert3|TopLeft Alert3|
