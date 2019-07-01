@@ -3,19 +3,17 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
-using Telerik.Windows.Controls;
 
-namespace WindowAlert
+namespace Telerik.Windows.Controls
 {
     /// <summary>
-    /// Window用のAlertManager
+    /// Extended RadDesktopAlert to WindowAlert.
     /// </summary>
     public partial class RadWindowAlertManager : IDisposable
     {
         Window _owner;
         RadDesktopAlertManager _manager;
         AlertScreenPosition _alertScreenPosition = AlertScreenPosition.BottomRight;
-        Double _alertWidth = 400;
 
 
         /// <summary>
@@ -31,23 +29,9 @@ namespace WindowAlert
             }
         }
 
-        /// <summary>
-        /// Alert1つの最大幅
-        /// </summary>
-        /// 
-        public Double MaxAlertWidth
-        {
-            get { return _alertWidth; }
-            set
-            {
-                _alertWidth = value;
-                CloseAllAlerts(false);
-            }
-        }
-
 
         /// <summary>
-        /// Alertを追加する
+        /// ShowAlert
         /// </summary>
         public void ShowAlert(String header,
             Int32 showDuration = 3000, Boolean canMove = false, Boolean canAutoClose = true,
@@ -56,7 +40,6 @@ namespace WindowAlert
             var alert = new RadDesktopAlert()
             {
                 Header = header,
-                MaxWidth = MaxAlertWidth,
 
                 CanMove = canMove,
                 CanAutoClose = canAutoClose,
@@ -69,19 +52,16 @@ namespace WindowAlert
         }
 
         /// <summary>
-        /// Alertを追加する
+        /// ShowAlert
         /// </summary>
         public void ShowAlert(RadDesktopAlert alert)
         {
-            if (MaxAlertWidth < alert.MaxWidth)
-                throw new ArgumentException($@"MaxAlertWidth < alert.MaxWidth({MaxAlertWidth} < {alert.MaxWidth}).\nMaxAlertWidthで先に最大サイズを設定してください");
-
             _manager.ShowAlert(alert);
             adjustAlertNum();
         }
 
         /// <summary>
-        /// 全てのAlertを閉じる
+        /// CloseAllAlerts
         /// </summary>
         public void CloseAllAlerts(Boolean useAnimations = true)
         {
@@ -130,7 +110,7 @@ namespace WindowAlert
 
 
         /// <summary>
-        /// コンストラクタ
+        /// Constructors
         /// </summary>
         public RadWindowAlertManager(Window owner, AlertScreenPosition alertScreenPosition = AlertScreenPosition.BottomRight)
         {
@@ -151,7 +131,7 @@ namespace WindowAlert
 
 
         /// <summary>
-        /// OwnerのLoadedイベント時に呼ばれる処理
+        /// Owner Loaded Events.
         /// </summary>
         void ownerLoaded(Object sender, EventArgs args)
         {
@@ -159,7 +139,7 @@ namespace WindowAlert
         }
 
         /// <summary>
-        /// OwnerのLoadedイベント時に呼ばれる処理
+        /// Owner LocationChanged Events.
         /// </summary>
         void ownerLocationChanged(Object sender, EventArgs args)
         {
@@ -167,7 +147,7 @@ namespace WindowAlert
         }
 
         /// <summary>
-        /// OwnerのLoadedイベント時に呼ばれる処理
+        /// Owner SizeChanged Events.
         /// </summary>
         void ownerSizeChanged(Object sender, SizeChangedEventArgs e)
         {
@@ -175,25 +155,24 @@ namespace WindowAlert
         }
 
         /// <summary>
-        /// RadDesktopAlertManagerの再生成
+        /// Recreate RadDesktopAlertManager.
         /// </summary>
         void recreateManager()
         {
             CloseAllAlerts(false);
-            var alertOffsetPos = getAlertOffsetPosition(AlertWindowPosition, MaxAlertWidth);
+            var alertOffsetPos = getAlertOffsetPosition(AlertWindowPosition);
             _manager = new RadDesktopAlertManager(AlertWindowPosition, alertOffsetPos);
         }
 
         /// <summary>
-        /// AlertのOffset位置を取得
+        /// GetAlertOffsetPosition.
         /// </summary>
-        Point getAlertOffsetPosition(AlertScreenPosition alertScreenPos, Double alertWidth)
+        Point getAlertOffsetPosition(AlertScreenPosition alertScreenPos)
         {
             HwndSource source = (HwndSource)HwndSource.FromVisual(_owner);
             if (source != null)
             {
-                Win32.RECT cr, wr;
-                if (Win32.GetClientRect(source.Handle, out cr) && Win32.GetWindowRect(source.Handle, out wr))
+                if (Win32.GetClientRect(source.Handle, out Win32.RECT cr) && Win32.GetWindowRect(source.Handle, out Win32.RECT wr))
                 {
                     var windowRect = new Rect(wr.Left, wr.Top, wr.Right - wr.Left, wr.Bottom - wr.Top);
                     var clientRect = new Rect(cr.Left, cr.Top, cr.Right - cr.Left, cr.Bottom - cr.Top);
@@ -217,7 +196,7 @@ namespace WindowAlert
                             return new Point(clientPos.X + barSize,
                                 windowRect.BottomLeft.Y - barSize - SystemParameters.WorkArea.Height);
                         case AlertScreenPosition.BottomCenter:
-                            return new Point(clientPos.X + barSize + (clientRect.Width / 2) - (SystemParameters.WorkArea.Width / 2),
+                            return new Point(clientPos.X + barSize + (clientRect.Width * 0.5) - (SystemParameters.WorkArea.Width * 0.5),
                                 windowRect.BottomLeft.Y - barSize - SystemParameters.WorkArea.Height);
                         case AlertScreenPosition.BottomRight:
                             return new Point(windowRect.BottomRight.X - (barSize * 2) - SystemParameters.WorkArea.Width,
@@ -229,15 +208,14 @@ namespace WindowAlert
         }
 
         /// <summary>
-        /// Windowの高さによってAlertの数を調整する
+        /// Adjust the number of alerts by the height of the window
         /// </summary>
         void adjustAlertNum()
         {
-            HwndSource source = (HwndSource)HwndSource.FromVisual(_owner);
+            var source = HwndSource.FromVisual(_owner) as HwndSource;
             if (source != null && _manager.GetAllAlerts().Any())
             {
-                Win32.RECT cr;
-                if (Win32.GetClientRect(source.Handle, out cr))
+                if (Win32.GetClientRect(source.Handle, out Win32.RECT cr))
                 {
                     var alertHeight = _manager.GetAllAlerts().Sum(x => x.Height);
                     var clientRect = new Rect(cr.Left, cr.Top, cr.Right - cr.Left, cr.Bottom - cr.Top);
@@ -261,7 +239,7 @@ namespace WindowAlert
         /// <summary>
         /// Win32Api
         /// </summary>
-        static private class Win32
+        static class Win32
         {
             [DllImport("user32.dll")]
             [return: MarshalAs(UnmanagedType.Bool)]
