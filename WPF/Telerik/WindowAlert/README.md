@@ -6,7 +6,7 @@ RadDesktopAlertManagerをWindow向けに拡張したRadWindowAlertManagerサン�
 - Telerik.Windows.Controls.Navigation.dll
 - Telerik.Windows.Data.dll
 
-## 使い方
+## Usage
 ```cs
 using Telerik.Windows.Controls;
 
@@ -17,5 +17,5 @@ manager.ShowAlert("messages...");
 |---|---|---|
 |![](https://github.com/nosimo/CSharpSapmles/blob/image/images/window_alert_bottom_right1.png)|![](https://github.com/nosimo/CSharpSapmles/blob/image/images/window_alert_bottom_right3.png)|![](https://github.com/nosimo/CSharpSapmles/blob/image/images/window_alert_top_left3.png)|
 
-## 参考
+## Reference
 https://docs.telerik.com/devtools/wpf/controls/raddesktopalert/overview  
