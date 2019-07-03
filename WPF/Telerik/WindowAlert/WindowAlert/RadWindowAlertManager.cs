@@ -33,19 +33,21 @@ namespace Telerik.Windows.Controls
         /// <summary>
         /// ShowAlert
         /// </summary>
-        public void ShowAlert(String header,
+        public void ShowAlert(String content, String header = "",
             Int32 showDuration = 3000, Boolean canMove = false, Boolean canAutoClose = true,
-            Boolean showMenuButton = false, Boolean showInTaskSwitcher = false)
+            Boolean showMenuButton = false, Boolean showInTaskSwitcher = false
+        )
         {
             var alert = new RadDesktopAlert()
             {
                 Header = header,
+                Content = content,
 
                 CanMove = canMove,
                 CanAutoClose = canAutoClose,
                 ShowDuration = showDuration,
                 ShowMenuButton = showMenuButton,
-                ShowInTaskSwitcher = showInTaskSwitcher,
+                //ShowInTaskSwitcher = showInTaskSwitcher,
             };
             _manager.ShowAlert(alert);
             adjustAlertNum();
@@ -72,6 +74,10 @@ namespace Telerik.Windows.Controls
         #region IDisposable Support
         private bool disposedValue = false; // 重複する呼び出しを検出するには
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
@@ -99,6 +105,9 @@ namespace Telerik.Windows.Controls
         // }
 
         // このコードは、破棄可能なパターンを正しく実装できるように追加されました。
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public void Dispose()
         {
             // このコードを変更しないでください。クリーンアップ コードを上の Dispose(bool disposing) に記述します。
@@ -184,23 +193,23 @@ namespace Telerik.Windows.Controls
                     switch (alertScreenPos)
                     {
                         case AlertScreenPosition.TopLeft:
-                            return new Point(clientPos.X + barSize,
-                                clientPos.Y + barSize);
+                            return new Point(clientPos.X + barSize - SystemParameters.WorkArea.X,
+                                clientPos.Y + barSize - SystemParameters.WorkArea.Y);
                         case AlertScreenPosition.TopCenter:
-                            return new Point(clientPos.X + barSize + (clientRect.Width / 2) - (SystemParameters.WorkArea.Width / 2),
-                                clientPos.Y + barSize);
+                            return new Point(clientPos.X + barSize + (clientRect.Width * 0.5) - (SystemParameters.WorkArea.Width * 0.5),
+                                clientPos.Y + barSize - SystemParameters.WorkArea.Y);
                         case AlertScreenPosition.TopRight:
-                            return new Point(windowRect.TopRight.X - (barSize * 2) - SystemParameters.WorkArea.Width,
-                                clientPos.Y + barSize);
+                            return new Point(windowRect.Right - (barSize * 2) - SystemParameters.WorkArea.Right,
+                                clientPos.Y + barSize - SystemParameters.WorkArea.Y);
                         case AlertScreenPosition.BottomLeft:
-                            return new Point(clientPos.X + barSize,
-                                windowRect.BottomLeft.Y - barSize - SystemParameters.WorkArea.Height);
+                            return new Point(clientPos.X + barSize - SystemParameters.WorkArea.X,
+                                windowRect.BottomLeft.Y - barSize - SystemParameters.WorkArea.Bottom);
                         case AlertScreenPosition.BottomCenter:
                             return new Point(clientPos.X + barSize + (clientRect.Width * 0.5) - (SystemParameters.WorkArea.Width * 0.5),
-                                windowRect.BottomLeft.Y - barSize - SystemParameters.WorkArea.Height);
+                                windowRect.BottomLeft.Y - barSize - SystemParameters.WorkArea.Bottom);
                         case AlertScreenPosition.BottomRight:
-                            return new Point(windowRect.BottomRight.X - (barSize * 2) - SystemParameters.WorkArea.Width,
-                                windowRect.BottomLeft.Y - barSize - SystemParameters.WorkArea.Height);
+                            return new Point(windowRect.Right - (barSize * 2) - SystemParameters.WorkArea.Right,
+                                windowRect.BottomLeft.Y - barSize - SystemParameters.WorkArea.Bottom);
                     }
                 }
             }
@@ -226,7 +235,7 @@ namespace Telerik.Windows.Controls
 
                         var oldHeight = alertHeight;
                         alertHeight = _manager.GetAllAlerts().Sum(x => x.Height);
-                        if(Math.Abs(oldHeight - alertHeight) < 0.001)
+                        if (Math.Abs(oldHeight - alertHeight) < 0.001)
                         {
                             break;
                         }

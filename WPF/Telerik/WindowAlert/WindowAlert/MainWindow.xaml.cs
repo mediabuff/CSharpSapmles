@@ -30,27 +30,28 @@ namespace WindowAlert
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _manager.ShowAlert("Test1\nTest2\nTest3");
+            _manager.ShowAlert("Test1\nTest2\nTest3", "Header1_1");
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            _manager.ShowAlert("Test1\nTest2\nTest3");
-            _manager.ShowAlert("Test4\nTest5\nTest6");
+            _manager.ShowAlert("Test1\nTest2\nTest3", "Header2_1");
+            _manager.ShowAlert("Test4\nTest5\nTest6", "Header2_2");
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            _manager.ShowAlert("Test1\nTest2\nTest3");
-            _manager.ShowAlert("Test4\nTest5\nTest6");
-            _manager.ShowAlert("Test7");
+            _manager.ShowAlert("Test1\nTest2\nTest3", "Header3_1");
+            _manager.ShowAlert("Test4\nTest5\nTest6", "Header3_2");
+            _manager.ShowAlert("Test7", "Header3_3");
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            _manager.ShowAlert("Test1\nTest2\nTest3");
-            _manager.ShowAlert("Test4\nTest5\nTest6");
-            _manager.ShowAlert("Test8");
+            _manager.ShowAlert("Test1\nTest2\nTest3", "Heade4_1");
+            _manager.ShowAlert("Test4\nTest5\nTest6", "Heade4_2");
+            _manager.ShowAlert("Test7", "Header4_3");
+            _manager.ShowAlert("Test8", "Header4_4");
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
