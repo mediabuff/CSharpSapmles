@@ -7,7 +7,7 @@ TabItemViewModelをJsonでデシリアライズして復元するだけです
 
 を使用しています  
 
-# Todo
+## Todo
 - Json.NETでのTabItemViewModelのシリアライズ/デシリアライズ  
 - ソース整理(TabITemControlViewModelの生成、MainWindowViewModelからの移動)  
 
@@ -19,7 +19,7 @@ TabItemViewModelをJsonでデシリアライズして復元するだけです
 
 
 
-# Referemces
+## References
 - Telerik RadTabControl  
 https://docs.telerik.com/devtools/wpf/controls/radtabcontrol/overview2  
 - タブアイテムの右側にAddとCloseボタンを追加する  
