@@ -41,8 +41,8 @@ namespace NamedFlagEnumEditor
 
         private DataTemplate createFlagEnumEditorDataTemplate(ItemPropertyInfo itemProperty)
         {
-            var flagEnumEditor = new FrameworkElementFactory(typeof(FlagEnumEditor));
-            flagEnumEditor.SetValue(FlagEnumEditor.EnumTypeProperty, itemProperty.PropertyType);
+            var flagEnumEditor = new FrameworkElementFactory(typeof(Telerik.Extensions.Controls.NamedFlagEnumEditor));
+            flagEnumEditor.SetValue(Telerik.Extensions.Controls.NamedFlagEnumEditor.EnumTypeProperty, itemProperty.PropertyType);
             //!@note RadPropertyGridのSourceItemsにEnumerableを渡す場合はCurrentPropertySet[{propertyName}].
             // 単一のインスタンスの場合は{propertyName}をバインドターゲットにする必要がある.
             IValueConverter enumConverter;
@@ -51,9 +51,9 @@ namespace NamedFlagEnumEditor
                 enumConverter = new EnumConverter(itemProperty.PropertyType);
             }
 #if true
-            flagEnumEditor.SetBinding(FlagEnumEditor.ValueProperty, new Binding($"CurrentPropertySet[{ itemProperty.Name }]") { Mode = BindingMode.TwoWay, Converter = enumConverter });
+            flagEnumEditor.SetBinding(Telerik.Extensions.Controls.NamedFlagEnumEditor.ValueProperty, new Binding($"CurrentPropertySet[{ itemProperty.Name }]") { Mode = BindingMode.TwoWay});
 #else
-            flagEnumEditor.SetBinding(FlagEnumEditor.ValueProperty, new Binding($"{ propertyName }") { Mode = BindingMode.TwoWay, Converter = enumConverter });
+            flagEnumEditor.SetBinding(Telerik.Extensions.Controls.NamedFlagEnumEdito2r.ValueProperty, new Binding($"{ propertyName }") { Mode = BindingMode.TwoWay, Converter = enumConverter });
 #endif
 
             var dataTemplate = new DataTemplate();

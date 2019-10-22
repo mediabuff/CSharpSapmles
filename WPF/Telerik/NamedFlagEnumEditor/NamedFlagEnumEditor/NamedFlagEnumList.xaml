@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Telerik.Extensions.Controls.NamedFlagEnumList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="noneStyleButton" TargetType="telerik:RadButton">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="telerik:RadButton">
+                        <ContentPresenter/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    
+    <DockPanel>
+        <telerik:RadListBox ItemsSource="{Binding Items}">
+            <telerik:RadListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <DockPanel ToolTip="{Binding Tooltip}">
+                            <CheckBox DockPanel.Dock="Left" IsChecked="{Binding IsChecked, Mode=TwoWay}" VerticalAlignment="Center"/>
+                            <telerik:RadButton Content="{Binding Header}"
+                                               HorizontalContentAlignment="Left"
+                                               Margin="5 0 0 0"
+                                               Click="RadButton_Click"
+                                               Style="{StaticResource noneStyleButton}"/>
+                        </DockPanel>
+                    </Grid>
+                </DataTemplate>
+            </telerik:RadListBox.ItemTemplate>
+        </telerik:RadListBox>
+    </DockPanel>
+</UserControl>

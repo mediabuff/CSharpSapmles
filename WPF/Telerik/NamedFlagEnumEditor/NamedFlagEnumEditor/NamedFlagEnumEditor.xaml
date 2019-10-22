@@ -1,35 +1,11 @@
 ﻿<UserControl x:Class="Telerik.Extensions.Controls.NamedFlagEnumEditor"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:local="clr-namespace:Telerik.Extensions.Controls"
-             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-             mc:Ignorable="d">
-    <UserControl.Resources>
-        <DataTemplate x:Key="MultiSelectComboTemplate">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-
-                <StackPanel Orientation="Horizontal">
-                    <CheckBox x:Name="checkbox" IsChecked="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType=telerik:RadComboBoxItem}}" />
-                    <TextBlock Text="{Binding}" Margin="5 0 0 0"/>
-                </StackPanel>
-            </Grid>
-        </DataTemplate>
-    </UserControl.Resources>
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation">
     <DockPanel>
-        <telerik:RadComboBox x:Name="radComboBox" 
-                             ItemsSource="{Binding Agencies}" 
-                             ItemTemplate="{StaticResource MultiSelectComboTemplate}"
-                             AllowMultipleSelection="True">
-            <i:Interaction.Behaviors>
-                <local:SelectedItemsBehavior SelectedItems="{Binding SelectedAgencies}" />
-            </i:Interaction.Behaviors>
-        </telerik:RadComboBox>
+        <telerik:RadDropDownButton DockPanel.Dock="Right"
+                                   x:Name="dropDownButton"
+                                   HorizontalContentAlignment="Left"/>
     </DockPanel>
 </UserControl>

@@ -1,11 +1,12 @@
-﻿# NamedFlagEnumEditor(作成途中)
+﻿# NamedFlagEnumEditor
 RadPropertyGridのFlagEnumEditorはDisplayName属性に対応していないので対応するサンプル  
+動くところまではとりあえず作成  
 
 ## Todo
-- CheckBox-ComboBoxを整理  
-SourceItems/Value Propertyを依存関係プロパティで追加  
-- PropertyGridで表示  
-
+- コード整理  
+ViewModelPropertyChangedを購読する代わりにFlagEnumList.ValueChangedを追加したほうが良いかも  
+- パフォーマンス調査  
+Boxingとか？
 
 ## References
 - FlagEnumEditorがDisplay nameに対応していない  

@@ -10,12 +10,14 @@ namespace NamedFlagEnumEditor
     [Flags]
     public enum TestFlags
     {
-        [Display(Name =  "なし")]
+        [Display(Name =  "なし", Description = nameof(None) + " : なし")]
         None = 0,
-        [Display(Name = "テストフラグ1")]
+        [Display(Name = "テストフラグ1", Description = nameof(Test1) + " : テストフラグ1")]
         Test1 = 1 << 0,
-        [Display(Name = "テストフラグ2")]
+        [Display(Name = "テストフラグ2", Description = nameof(Test2) + " : テストフラグ2")]
         Test2 = 1 << 1,
+        [Display(Name = "All", Description = nameof(All) + " : All")]
+        All = Test1 | Test2,
     }
 
 
