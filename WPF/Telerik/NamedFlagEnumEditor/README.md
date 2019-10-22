@@ -1,6 +1,7 @@
 ﻿# NamedFlagEnumEditor
 RadPropertyGridのFlagEnumEditorはDisplayName属性に対応していないので対応するサンプル  
 動くところまではとりあえず作成  
+<img src="https://github.com/nosimo/CSharpSapmles/blob/image/images/flag_enum_editor1.png" width="200px">
 ![](https://github.com/nosimo/CSharpSapmles/blob/image/images/flag_enum_editor1.png)
 
 ## Todo
